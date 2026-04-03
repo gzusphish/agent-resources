@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** VoltAgent-awesome-claude-code-subagents
+- **Repository URL:** https://github.com/VoltAgent/awesome-claude-code-subagents
 - **Path:** `categories/09-meta-orchestration/workflow-orchestrator.md`
 - **Author:** VoltAgent
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31

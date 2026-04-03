@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** trailofbits-skills
+- **Repository URL:** https://github.com/trailofbits/skills
 - **Path:** `plugins/semgrep-rule-creator/skills/semgrep-rule-creator/`
 - **Author:** Trail of Bits
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31

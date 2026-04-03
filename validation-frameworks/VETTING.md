@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** slgoodrich-agents
+- **Repository URL:** https://github.com/slgoodrich/agents
 - **Path:** `plugins/ai-pm-copilot/skills/validation-frameworks/`
 - **Author:** Sam Goodrich
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31

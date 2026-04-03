@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** obra/superpowers
+- **Repository URL:** https://github.com/obra/superpowers
 - **Path:** `skills/writing-plans/SKILL.md`
 - **Author:** Jesse Vincent
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-04-01

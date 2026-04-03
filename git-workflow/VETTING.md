@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** netresearch/git-workflow-skill
+- **Repository URL:** https://github.com/netresearch/git-workflow-skill
 - **Path:** `skills/git-workflow/`
 - **Author:** Netresearch
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31

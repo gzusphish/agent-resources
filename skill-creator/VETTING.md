@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** anthropic-skills
+- **Repository URL:** https://github.com/anthropics/skills
 - **Path:** `skills/skill-creator/`
 - **Author:** Anthropic
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31

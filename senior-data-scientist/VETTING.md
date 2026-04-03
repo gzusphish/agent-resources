@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** alirezarezvani-claude-skills
+- **Repository URL:** https://github.com/alirezarezvani/claude-skills
 - **Path:** `engineering-team/senior-data-scientist/`
 - **Author:** Alireza Rezvani
 - **License:** MIT
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31

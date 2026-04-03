@@ -2,9 +2,11 @@
 
 ## Source
 - **Repository:** strands-agents/agent-sop
+- **Repository URL:** https://github.com/strands-agents/agent-sop
 - **Path:** `agent-sops/codebase-summary.sop.md`
 - **Author:** AWS / Strands Agents
 - **License:** Apache 2.0
+- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
 2026-03-31
