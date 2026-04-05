@@ -119,6 +119,11 @@ You MUST complete each phase before proceeding to the next.
    - Keep tracing up until you find the source
    - Fix at source, not at symptom
 
+   **Self-correction checkpoint:**
+   - If after 3+ tracing attempts you still don't understand the data flow:
+     - Run `self-correction` with decision: ADAPT (try different angle) or ESCALATE (ask user for observed vs expected behavior)
+     - Consider tracing from a different entry point
+
 ### Phase 2: Pattern Analysis
 
 **Find the pattern before fixing:**
@@ -193,8 +198,11 @@ You MUST complete each phase before proceeding to the next.
    - STOP
    - Count: How many fixes have you tried?
    - If < 3: Return to Phase 1, re-analyze with new information
-   - **If ≥ 3: STOP and question the architecture (step 5 below)**
-   - DON'T attempt Fix #4 without architectural discussion
+   - **If ≥ 3:**
+     1. Run `self-correction` checkpoint immediately
+     2. If decision is ABANDON or ESCALATE: Question architecture (see Phase 4.5)
+     3. If decision is ADAPT: Try fundamentally different debugging angle
+   - DON'T attempt Fix #4 without checkpoint or architectural discussion
 
 5. **If 3+ Fixes Failed: Question Architecture**
 

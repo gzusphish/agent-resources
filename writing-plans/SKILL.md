@@ -22,6 +22,22 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during brainstorming. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
 
+## Decomposition Checkpoint
+
+**Before mapping files, verify the task structure is clear.**
+
+If the spec describes a complex task where the implementation path is unclear:
+- **Use `subgoal-decomposer`** to break down the work before file mapping
+- Decompose until subgoals are < 10 minutes each and well-understood
+- Identify parallel work streams
+
+After decomposition:
+- Map each atomic subgoal to files (see File Structure below)
+- Structure tasks to preserve parallel opportunities where possible
+- Mark task dependencies explicitly in the plan
+
+Skip this step if the spec is already well-decomposed or if the implementation path is obvious.
+
 ## File Structure
 
 Before defining tasks, map out which files will be created or modified and what each one is responsible for. This is where decomposition decisions get locked in.
@@ -146,7 +162,9 @@ After saving the plan, offer execution choice:
 **If Subagent-Driven chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
 - Fresh subagent per task + two-stage review
+- **Between tasks:** Run `self-correction` checkpoint if task took unexpectedly long or failed
 
 **If Inline Execution chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
 - Batch execution with checkpoints for review
+- **Checkpoint triggers:** Use `self-correction` after every 3 tasks or when stuck

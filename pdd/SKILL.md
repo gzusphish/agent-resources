@@ -167,6 +167,19 @@ Develop a comprehensive design document based on the requirements and research.
 
 Create a structured implementation plan with a series of steps for implementing the design.
 
+**Pre-Planning Decomposition:**
+
+Before writing the implementation plan:
+- **Use `subgoal-decomposer`** to break down the design into hierarchical subgoals
+- Identify components that can be built in parallel
+- Map dependencies between implementation phases
+- Verify each subgoal is < 10 minutes of work or clearly decomposed further
+
+After decomposition, structure the plan to:
+- Preserve parallel work opportunities where possible
+- Sequence steps for early end-to-end functionality
+- Mark explicit dependencies between steps
+
 **Constraints:**
 - You MUST create an implementation plan at {project_dir}/implementation/plan.md
 - You MUST include a checklist at the beginning of the plan.md file to track implementation progress
