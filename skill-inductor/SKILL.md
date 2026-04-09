@@ -1,19 +1,34 @@
 ---
 name: skill-inductor
-description: Use when discovering new skills, evaluating external skills for adoption, or integrating approved skills into projects. Guides the complete skill induction workflow from discovery through vetting to installation.
+description: "Use when discovering new skills from external sources, evaluating external skills for adoption, or ingesting approved skills into the unified agent-skills/ repository. Guides the ingestion workflow from discovery through vetting. Does NOT handle IDE installation - use skill-installer for that."
 ---
 
 # Skill Inductor
 
-Complete workflow for bringing new skills into your agent ecosystem.
+Ingest skills from external sources into central repositories.
+
+## Scope Clarification
+
+**This skill handles:**
+- Discovering skills from **external** sources (GitHub, documentation, community)
+- Vetting skills for security and quality
+- Placing vetted skills into `agent-skills/` (unified repository)
+- Managing the skill catalog and metadata
+
+**This skill does NOT handle:**
+- Installing skills to IDE contexts (see `skill-installer`)
+- Deploying skills to project directories (see `skill-installer`)
+- Managing IDE-specific paths or configurations
+
+The workflow boundary: **External sources → Central repositories** (not to IDE contexts)
 
 ## When To Use
 
 - **Discovering skills** from external repositories, documentation, or community sources
 - **Evaluating skills** before adoption — security, quality, fit assessment
-- **Integrating skills** into specific projects after vetting
-- **Updating existing skills** when new versions become available
-- **Auditing installed skills** for security or relevance
+- **Ingesting approved skills** into `agent-skills/` (unified repository)
+- **Updating existing skills** in central repositories when new versions become available
+- **Auditing skills** in central repositories for security or relevance
 
 ## Core Workflow
 
@@ -59,53 +74,72 @@ python agent-skills/skill-vetter/scripts/vett.py /path/to/skill/ --json >> vetti
 - [ ] **Dependencies**: Documented, minimal, justified
 
 **Create VETTING.md:**
-Use standardized format (see `agent-skills/skill-vetter/VETTING.md` template):
+Use standardized format (see `skill-vetter/VETTING.md` as canonical template):
 - Source attribution (repo, author, license)
+- Repository URL (for vetted external skills)
+- Vetted Commit hash (pins exact state)
 - Vetting date
 - Approval scope
 - Rationale for adoption
+- Dependencies
 - Security assessment
+- Testing status
 - Installation commands
+- Installation Log (for tracking drift)
+
+**Custom/original skills:** Use `skill-vetter/VETTING.md` structure but omit Repository URL and Vetted Commit fields.
 
 **Verdict:**
 - **PASS** → Proceed to Install
 - **WARN** → Document risks, conditional approval
 - **FAIL** → Do not install, document why
 
-### 3. Install
+### 3. Ingest
 
-Copy approved skill to central repository.
+Copy approved skill to central repository (NOT to IDE contexts).
 
 ```bash
-# To agent-skills-custom (central repository)
-cp -r /path/to/vetted/skill/ agent-skills-custom/
+# Copy to unified agent-skills/ repository
+cp -r /path/to/vetted/skill/ agent-skills/
 
 # Create VETTING.md if not present (use skill-vetter template)
-# Update README catalog (see Integration below)
+# Note: VETTING.md source_type field differentiates custom vs vetted
+# Update README catalog
 ```
 
-**Post-install verification:**
+**Post-ingest verification:**
 - [ ] SKILL.md loads without parsing errors
 - [ ] References exist (check all linked files)
 - [ ] Scripts are executable (if applicable)
-- [ ] Integration test: skill triggers appropriately
+- [ ] VETTING.md present with standardized format
+- [ ] Catalog entry created/updated
 
-### 4. Deploy to Projects
+**This is NOT installation.** The skill is now in central storage, ready for `skill-installer` to deploy to IDE contexts.
 
-Distribute to specific project skill directories.
+### 4. Handoff to Installation
 
+Once skill is ingested to central repository, deployment to IDE contexts is handled by `skill-installer`.
+
+**Next step (if needed):**
 ```bash
-# Example: Deploy to Panopticon
-cp -r agent-skills-custom/skill-name/ .panopticon/.windsurf/skills/
-
-# Example: Deploy to GTD project
-cp -r agent-skills-custom/skill-name/ gtd/.github/skills/
-cp -r agent-skills-custom/skill-name/ gtd/.windsurf/skills/
+# Deploy to specific IDE context
+# See skill-installer/SKILL.md for:
+# - IDE-specific paths (.windsurf/, .claude/, .github/)
+# - Copy vs symlink decisions
+# - Multi-IDE deployment
+# - Update and rollback workflows
 ```
 
-**Update project context:**
-- Add to project's skill index if maintained
-- Document in project-specific AGENTS.md if relevant
+**When to handoff:**
+- User wants skill available in a specific project → `skill-installer`
+- User wants skill in global IDE context → `skill-installer`
+- Updating skill in IDE contexts → `skill-installer`
+- Rolling back IDE installation → `skill-installer`
+
+**What stays in central repo only:**
+- Skills being cataloged but not yet deployed
+- Skills vetted for specific use cases only
+- Skills awaiting further modification (skill-repurposer)
 
 ### 5. Monitor & Update
 
@@ -121,15 +155,31 @@ cp -r agent-skills-custom/skill-name/ gtd/.windsurf/skills/
 3. Review diff before replacing
 4. Re-deploy to all projects using the skill
 
-## Integration with Existing Skills
+## Integration with Skill Management Ecosystem
+
+```
+External Sources (GitHub, docs, community)
+    ↓
+skill-inductor (THIS SKILL: discover → vet → ingest to central repo)
+    ↓
+CENTRAL REPO: agent-skills/ (unified)
+    ↓
+skill-installer (deploy to IDE contexts: .windsurf/, .claude/, etc.)
+    ↓
+IDE contexts and projects
+```
+
+**Helper skills by phase:**
 
 | Phase | Helper Skill | Usage |
 |-------|--------------|-------|
-| **Vet** | `skill-vetter` | Security audit, dependency scanning |
-| **Vet** | `skill-security-auditor` | Static analysis for malicious patterns |
-| **Create** | `skill-creator` | If modifying/improving before induction |
+| **Discover/Vet** | `skill-vetter` | Security audit, dependency scanning |
+| **Discover/Vet** | `skill-security-auditor` | Static analysis |
+| **Create** | `skill-creator` | If modifying before ingestion |
+| **Create** | `skill-repurposer` | If adapting external skill |
 | **Create** | `writing-skills` | TDD approach to skill documentation |
-| **Document** | `codebase-summary` | Generate skill documentation from analysis |
+| **Validate** | `skill-auditor` | Quality/consistency before ingestion |
+| **Deploy** | `skill-installer` | Installation to IDE contexts (NOT this skill) |
 
 ## Quality Gates
 
@@ -165,9 +215,12 @@ cp -r agent-skills-custom/skill-name/ gtd/.windsurf/skills/
 1. Clone to ../agent-resources/
 2. Run skill-vetter --strict
 3. Create VETTING.md
-4. Copy to agent-skills-custom/
+4. Copy to agent-skills/
 5. Update README catalog
-6. Deploy to target projects
+6. STOP - Ingestion complete
+
+If deployment to IDE needed:
+7. Use skill-installer to deploy to .windsurf/, .claude/, etc.
 ```
 
 **Self-inducted skill:**
@@ -175,7 +228,11 @@ cp -r agent-skills-custom/skill-name/ gtd/.windsurf/skills/
 1. Use skill-creator or writing-skills methodology
 2. Self-vet with skill-vetter
 3. Create VETTING.md (self-attested)
-4. Follow standard install/deploy
+4. Copy to agent-skills-custom/
+5. STOP - Ingestion complete
+
+If deployment to IDE needed:
+6. Use skill-installer to deploy
 ```
 
 **Skill update:**
@@ -183,15 +240,18 @@ cp -r agent-skills-custom/skill-name/ gtd/.windsurf/skills/
 1. Check source for changes
 2. Re-run full vetting
 3. Review diff
-4. Replace in agent-skills-custom/
+4. Replace in agent-skills/
 5. Re-deploy to all projects
 ```
 
 ## Reference Files
 
+- `skill-installer/SKILL.md` — Deploy skills to IDE contexts
 - `skill-vetter/SKILL.md` — Security audit procedures
 - `skill-vetter/VETTING.md` — Template for vetting documentation
+- `skill-auditor/SKILL.md` — Quality validation before ingestion
 - `writing-skills/SKILL.md` — TDD approach to skill creation
+- `skill-repurposer/SKILL.md` — Adapting external skills
 - `../agent-resources/README.md` — External skill staging area
 
 ## Storage Conventions
@@ -199,10 +259,8 @@ cp -r agent-skills-custom/skill-name/ gtd/.windsurf/skills/
 | Location | Purpose |
 |----------|---------|
 | `../agent-resources/` | Staging area for unvetted external skills |
-| `agent-skills-vetted/` | Central vetted skill repository |
-| `<project>/.windsurf/skills/` | Windsurf project skills |
-| `<project>/.agent/skills/` | Generic project skills |
-| `~/.claude/skills/` | Claude Code global skills |
+| `agent-skills/` | Unified repository (all skills, differentiated by VETTING.md source_type) |
+| `skill-installer` | Deploys from central repos to IDE contexts |
 
 ---
 

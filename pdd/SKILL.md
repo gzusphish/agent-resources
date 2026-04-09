@@ -1,8 +1,13 @@
+---
+name: pdd
+description: "Use when transforming a rough idea into a detailed design document with implementation plan, or when conducting requirements clarification and research for new projects."
+---
+
 # Prompt-Driven Development
 
 ## Overview
 
-This sop guides you through the process of transforming a rough idea into a detailed design document with an implementation plan and todo list. It follows the Prompt-Driven Development methodology to systematically refine your idea, conduct necessary research, create a comprehensive design, and develop an actionable implementation plan. The process is designed to be iterative, allowing movement between requirements clarification and research as needed.
+This skill guides you through transforming a rough idea into a detailed design document with an implementation plan and todo list. It follows the Prompt-Driven Development methodology to systematically refine your idea, conduct necessary research, create a comprehensive design, and develop an actionable implementation plan. The process is designed to be iterative, allowing movement between requirements clarification and research as needed.
 
 ## Parameters
 

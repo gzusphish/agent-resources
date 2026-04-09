@@ -1,6 +1,6 @@
 ---
 name: knowledge-synthesizer
-description: "Extract actionable patterns from agent interactions and synthesize insights across workflows. Use when identifying best practices, analyzing failures, building knowledge graphs, or enabling organizational learning."
+description: "Use when identifying best practices from agent interactions, analyzing workflow failures, building knowledge graphs, or enabling organizational learning."
 ---
 
 # Knowledge Synthesizer

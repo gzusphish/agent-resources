@@ -26,12 +26,11 @@ Validate skills against organizational standards and identify quality issues.
 skill-auditor /path/to/skill/
 
 # Entire repository
-skill-auditor agent-skills-custom/ --recursive
-skill-auditor agent-skills-vetted/ --recursive
+skill-auditor agent-skills/ --recursive
 
-# Specific category
-skill-auditor agent-skills-custom/ --filter=self-inducted
-skill-auditor agent-skills-vetted/ --filter=self-inducted
+# Specific category (filter by VETTING.md source_type)
+skill-auditor agent-skills/ --filter=source_type=generated
+skill-auditor agent-skills/ --filter=source_type=inducted
 ```
 
 **Audit dimensions (select based on need):**
@@ -155,7 +154,7 @@ standards_checks:
 ```
 
 **Project-specific conventions:**
-- Storage paths use `agent-skills-custom/` or `agent-skills-vetted/`
+- Storage path is `agent-skills/` (unified repository)
 - VETTING.md uses full standardized format (not brief self-inducted version)
 - GitHub Copilot support: include `.github/skills/` in installation
 - Skill names are kebab-case, descriptive, action-oriented
@@ -256,7 +255,7 @@ audit_standards_version: "2026-04-06"
 key_conventions:
   vettingmd_format: "full_standardized"  # not brief
   description_format: "use_when_only"    # no workflow summaries
-  storage_path: "agent-skills-custom/"   # not agent-skills/
+  storage_path: "agent-skills/"   # unified repository
   date_format: "ISO_8601"                # YYYY-MM-DD
   skill_name_format: "kebab_case"        # lowercase-with-hyphens
 ```
@@ -273,6 +272,7 @@ key_conventions:
 | Pattern | Issue | Detection |
 |---------|-------|-----------|
 | **Brief VETTING.md** | Self-inducted format in custom repo | Check for missing Source/Rationale sections |
+| **Missing Installation Log** | Cannot track drift between repo and installed versions | No Installation Log table in VETTING.md |
 | **Workflow in description** | CSO violation | Regex: description contains workflow words |
 | **Orphan references** | Dead code | File in references/ not linked in SKILL.md |
 | **Missing integration** | Siloed skill | No cross-references to related skills |

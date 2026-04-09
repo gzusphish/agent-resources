@@ -1,38 +1,76 @@
-# Vetting Notes: insecure-defaults
+---
+skill: insecure-defaults
+version: "1.0.0"
+---
+
+# Vetting Record: Insecure Defaults
 
 ## Source
-- **Repository:** trailofbits-skills
-- **Repository URL:** https://github.com/trailofbits/skills
-- **Path:** `plugins/insecure-defaults/skills/insecure-defaults/`
-- **Author:** Trail of Bits
-- **License:** MIT
-- **Vetted Commit:** `89500d759d43b13ee292a04a88834f57d0e07b98`
+
+- **Repository**: trailofbits-skills
+- **Repository URL**: https://github.com/trailofbits/skills
+- **Path**: `plugins/insecure-defaults/skills/insecure-defaults/`
+- **Author**: Trail of Bits
+- **License**: MIT
+- **Vetted Commit**: `89500d759d43b13ee292a04a88834f57d0e07b98`
 
 ## Vetting Date
+
 2026-03-31
 
-## Purpose
-Security audit skill for detecting insecure default configurations
-
 ## Approved For
-- **Panopticon** (primary use case)
-- **All projects** where applicable
+
+✅ **APPROVED** - All projects requiring security audits
+
+## Rationale
+
+Security audit skill for detecting fail-open insecure defaults (hardcoded secrets, weak auth, permissive security) that allow apps to run insecurely in production.
+
+## Dependencies
+
+- None
+- No external API calls
 
 ## Testing Status
-- **Skill validated:** Yes
-- **Platform compatibility:** Windsurf, Claude Code
+
+- [x] Skill validated
+- [x] Platform compatibility: Windsurf, Claude Code
 
 ## Security Assessment
-- **Risk level:** Low
-- **External API calls:** None
-- **File system operations:** As documented
+
+**Status**: ✅ **CLEAR**
+
+| Criterion | Result | Notes |
+|-----------|--------|-------|
+| Code injection risk | ✅ CLEAR | No code execution |
+| Network exfiltration | ✅ CLEAR | No network calls |
+| Credential harvesting | ✅ CLEAR | No credential access |
+| File system access | ✅ CLEAR | Read-only config analysis |
+| External dependencies | ✅ CLEAR | None required |
+
+**Verdict**: No security concerns.
 
 ## Installation
+
 ```bash
 cp -r insecure-defaults/ ~/.claude/skills/           # Claude Code
 cp -r insecure-defaults/ .windsurf/skills/          # Windsurf
 ```
 
+## Installation Log
+
+| Date | Location | Method | Version | Drift Check |
+|------|----------|--------|---------|-------------|
+| 2026-03-31 | agent-skills-vetted/ | inducted | 1.0.0 | Baseline |
+
 ## Notes
+
 - Inducted from trailofbits-skills
 - Part of the agent-skills central repository
+- Detects hardcoded secrets, weak auth, permissive security configs
+
+---
+
+**Auditor**: Cascade AI Assistant  
+**Audit Date**: 2026-03-31  
+**Risk Level**: Low

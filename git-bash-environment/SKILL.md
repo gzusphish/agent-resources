@@ -124,6 +124,27 @@ Need Windows-specific features?
 | `The system cannot find the path` | Wrong path format | Check Unix vs Windows path style |
 | `command not found` | Tool not in PATH | Use `which toolname` to verify |
 
+### Git LFS Smudge Failure (TLS / certificate trust)
+
+Symptom during `git reset --hard` or `git checkout`:
+```
+tls: failed to verify certificate: x509: certificate signed by unknown authority
+error: external filter 'git-lfs filter-process' failed
+```
+
+**Fast recovery — exclude common LFS binary asset types via sparse-checkout:**
+```bash
+git sparse-checkout set "/*" "!*.png" "!*.gif"
+git reset --hard HEAD
+```
+
+**Alternative — skip LFS download entirely (safe for reference/read-only repos):**
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
+```
+
+The root cause is corporate CA chain not being trusted by Git's TLS stack for the LFS batch endpoint. The above workarounds restore the working tree without fixing the underlying trust issue.
+
 ## Verification Commands
 
 ```bash

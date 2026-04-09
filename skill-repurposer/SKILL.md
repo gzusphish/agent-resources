@@ -161,6 +161,33 @@ cp agent-skills-custom/source-skill/SKILL.md agent-skills-custom/repurposed-skil
 5. Deploy to target projects
 ```
 
+## Pattern/Concept Borrowing
+
+Sometimes you want to borrow specific patterns or concepts from a skill without repurposing the entire skill. This is distinct from full skill repurposing—document it differently.
+
+**When to use pattern borrowing:**
+- Decomposition algorithm from one skill applied to different domain
+- Checkpoint/trigger patterns adapted for different workflow
+- Structure/template patterns reused with different content
+
+**Documentation for pattern borrowing:**
+```markdown
+## Pattern Attribution
+- **Source Skill:** [name] from [repo]
+- **Pattern Borrowed:** [specific component—e.g., "work-backward decomposition algorithm"]
+- **Adaptation:** [how modified for new context]
+- **Rationale:** [why pattern fits new use case]
+```
+
+**Example from subgoal-decomposer:**
+> Pattern borrowed from obra/superpowers breakdown-plan skill. Adapted work-backward algorithm from GitHub-specific issue breakdown to general task decomposition. Core "end-state → prerequisites" logic preserved; GitHub-specific fields replaced with generic dependency mapping.
+
+**Difference from full repurposing:**
+- **Full repurposing:** Entire skill adapted (new name, new domain, new triggers)
+- **Pattern borrowing:** Specific technique/component reused (may be same domain, partial overlap)
+
+---
+
 ## Repurposing Patterns
 
 ### Research → Engineering
