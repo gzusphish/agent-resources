@@ -14,7 +14,7 @@ Intelligent conversation history loading with two-stage filtering to prevent con
 - **Cross-project context** — find relevant exchanges across multiple conversation files
 - **Context overflow mitigation** — limit loaded exchanges to most relevant subset
 - **Multi-hop reasoning** — follow a chain of decisions through multiple conversations
-- **Summarizing a conversation** — when the user asks you to document the current conversation for future context recovery, following this skill's format with YAML frontmatter, exchange IDs, and structured sections
+- **Summarizing a conversation** — when the user asks you to document the current conversation, store it as a new file in `.panopticon/scriptorium/` following this skill's format with YAML frontmatter, exchange IDs, and structured sections
 
 ## Core Concept: Two-Stage Loading
 
