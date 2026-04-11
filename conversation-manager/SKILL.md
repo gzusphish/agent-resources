@@ -68,13 +68,13 @@ filtering_steps:
 **Current Request Topic:** [extracted topic]
 
 **Selected Conversations:**
-1. `20260329-panopticon-assembly.md`
+1. `20260329.0143-panopticon-assembly.md`
    - exchange-000 (final state summary)
    - exchange-001 (skill discovery)
    - exchange-005 (security infrastructure)
    - exchange-007 (skill-vetter creation)
 
-2. `20250407-conversation-history-management.md`
+2. `20250407.2048-conversation-history-management.md`
    - exchange-001 (concept proposal)
 
 **Total Exchanges to Load:** 5
@@ -108,7 +108,7 @@ User: "Update the skill-vetter to handle Python 3.12"
 
 Stage 1 Analysis:
 - Topic: skill-vetter, Python, security-vetting
-- File match: 20260329-panopticon-assembly.md (keywords: skill-vetter)
+- File match: 20260329.0143-panopticon-assembly.md (keywords: skill-vetter)
 - Exchange match: exchange-007 (skill-vetter creation)
 
 Stage 2 Loading:
@@ -124,8 +124,8 @@ User: "Why did we choose Ollama over other local model options?"
 Stage 1 Analysis:
 - Topic: local-models, ollama, model-comparison
 - File matches: 
-  - 20260329-panopticon-assembly.md (exchange-010: local models)
-  - 20250407-conversation-history-management.md (none)
+  - 20260329.0143-panopticon-assembly.md (exchange-010: local models)
+  - 20250407.2048-conversation-history-management.md (none)
 - Exchange match: exchange-010
 
 Stage 2 Loading:
@@ -141,7 +141,7 @@ User: "Should we switch from copy to symlink for skill installation?"
 Stage 1 Analysis:
 - Topic: skill-installation, symlink, tech-debt
 - File matches:
-  - 20260329-panopticon-assembly.md (exchange-005: security infrastructure, copy operations)
+  - 20260329.0143-panopticon-assembly.md (exchange-005: security infrastructure, copy operations)
   - Current TO-DO.md mentions symlink in tech debt
 - Decision: Load exchange-005 for security context, note current open question
 
@@ -226,8 +226,7 @@ After loading, confirm:
 ## Reference Files
 
 - `conversation-manager/references/TEMPLATE.md` — Standardized conversation format
-- `conversation-manager/references/GENERATION_PROMPT.md` — Creating new conversation files
-- `scriptorium/20260329-panopticon-assembly.md` — Example with exchange IDs
+- `scriptorium/20260329.0143-panopticon-assembly.md` — Example with exchange IDs
 
 ---
 

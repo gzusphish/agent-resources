@@ -8,12 +8,12 @@ Use this prompt at the end of a conversation to create or update a conversation 
 
 Summarize this conversation into a structured markdown file optimized for agent context recovery.
 
-**CRITICAL:** Use the actual conversation date (when exchanges occurred), NOT today's date when generating the summary.
+**CRITICAL:** Use the timestamp of the first exchange in the conversation, NOT the current date when generating the summary.
 
-**Output location:** `.panopticon/scriptorium/conversations/YYYYMMDD-[descriptive-name].md`
-- `YYYYMMDD` = Date when the conversation actually happened (extract from exchange timestamps)
+**Output location:** `.panopticon/scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
+- `YYYYMMDD.HHMM` = Timestamp of the FIRST exchange in the conversation
 - NOT the current date when creating this file
-- Example: If exchanges happened March 29, 2026 → filename is `20260329-*.md` even if generating on April 7
+- Example: If first exchange happened March 29, 2026 at 01:43 → filename is `20260329.0143-*.md` even if generating on April 7
 
 ---
 
