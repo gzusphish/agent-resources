@@ -73,8 +73,10 @@ echo "one"; echo "two"; echo "three"
 # OR operator
 false || echo "fallback"
  
-# AND with built-ins only
+# AND chains work (built-in or external)
 echo "first" && echo "second"
+ls && echo "success"
+head --version && echo "done"
 ```
  
 ### What Requires bash -c Wrapper
@@ -92,14 +94,6 @@ bash -c 'ls | head'
 bash -c 'cat file.txt | grep "pattern"'
 bash -c 'echo test | awk "{print \$1}"'
  
-# ❌ FAILS: Command chaining (&&) with GNU tools
-ls && head --version
-grep pattern file.txt && echo success
- 
-# ✅ WORKS: Wrap in bash -c
-bash -c 'ls && head --version'
-bash -c 'grep pattern file.txt && echo success'
- 
 # ❌ FAILS: Redirects
 echo "output" > file.txt
 echo "append" >> file.txt
@@ -116,22 +110,51 @@ result=$(ls | head -n 1)
 # ✅ WORKS: Wrap entire expression
 bash -c 'result=$(ls | head -n 1) && echo "First: $result"'
  
-# ❌ FAILS: Subshells
-(echo "in subshell"; pwd)
- 
+# ⚠️ CRITICAL: Subshells HANG indefinitely (not just fail)
+(echo "in subshell"; pwd)   # NEVER RETURNS - use bash -c!
+(ls | head -1)              # NEVER RETURNS - use bash -c!
+
 # ✅ WORKS: Wrap in bash -c
 bash -c '(echo "in subshell"; pwd)'
+bash -c '(cd /tmp; ls | head -3)'
 ```
  
 ### Rule of Thumb
- 
+
 **Use `bash -c` wrapper if your command includes:**
 - Pipes (`|`)
 - Redirects (`>`, `>>`, `<`, `2>&1`)
-- Command chaining (`&&`) with GNU tools (not built-ins)
-- Subshells `( )`
-- Complex command substitution with pipes
+- Subshells `( )` ⚠️ **WARNING: hangs if not wrapped**
+- Command substitution containing pipes: `$(cmd | cmd)`
+- Any combination of the above
+
+**DO NOT need `bash -c` for:**
+- Simple `&&` or `||` chains (they work directly)
+- Basic command substitution without pipes: `$(pwd)`
+- Semicolon-separated commands: `cmd1; cmd2`
  
+## Why bash -c is Needed (Root Cause)
+
+Windsurf on Windows validates commands using `bash.exe -n -c` before execution. This validation runs in a Windows command context where special characters (`|`, `>`, `<`) are intercepted by Windows CMD parsing before reaching bash.
+
+**The Pattern:**
+- `ls | head` → Windows intercepts `|` → Parser error: `'head' not recognized`
+- `echo > file` → Windows intercepts `>` → Error: `The system cannot find the path`
+- `(echo test)` → Parser hangs waiting for closing paren → **Never returns**
+
+**The Fix:**
+Wrapping in `bash -c '...'` ensures the entire command string is passed to bash as a single argument, bypassing Windows CMD interpretation.
+
+**Escaping Inside bash -c:**
+When using `bash -c`, escape `$` for literal dollar signs:
+```bash
+# ❌ WRONG: $1 expanded by outer shell
+bash -c 'echo "test" | awk "{print $1}"'
+
+# ✅ CORRECT: \$1 passed literally to awk
+bash -c 'echo "test" | awk "{print \$1}"'
+```
+
 ## Critical Syntax Notes
  
 ### xcopy in Git Bash
@@ -193,8 +216,8 @@ grep -r "pattern" --include="*.md" .
 # View file content (requires bash -c for pipes)
 bash -c 'cat file.txt | head -50'
  
-# Chaining with GNU tools (requires bash -c)
-bash -c 'ls && head --version'
+# Chaining with pipes (requires bash -c)
+bash -c 'ls | head && echo "done"'
  
 # Redirects (requires bash -c)
 bash -c 'echo "output" > file.txt'
@@ -202,18 +225,34 @@ bash -c 'cat file.txt >> another.txt'
 ```
  
 ## When to Use What
- 
+
 ```
 Need to copy files?
 ├── Simple file copy → cp
 ├── Directory recursively → cp -r
 ├── Many files with filtering → find + cp
 └── Windows-specific behavior → cmd //c xcopy //E //I //Y
- 
+
 Need Windows-specific features?
 ├── Registry, WMI, .NET → powershell -Command "..."
 ├── Legacy DOS commands → cmd //c command
 └── Windows paths required → Use // instead of / for switches
+
+Need to choose command format?
+│
+├─ Contains | (pipe)? ───────────────┐
+│                                    YES → Use bash -c
+│                                     NO ↓
+├─ Contains >, >>, <, 2>&1? ───────┐
+│                                    YES → Use bash -c
+│                                     NO ↓
+├─ Contains (subshell)? ─────────────┐
+│                                    YES → Use bash -c (or it HANGS)
+│                                     NO ↓
+├─ Contains $(cmd | cmd)? ───────────┐
+│                                    YES → Use bash -c
+│                                     NO ↓
+└─ All other cases ──────────────────→ Run directly
 ```
  
 ## Troubleshooting

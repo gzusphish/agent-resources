@@ -70,6 +70,7 @@ cp -r git-bash-environment/ .windsurf/skills/          # Windsurf
  
 | Date | Change |
 |------|--------|
+| 2026-04-10 | **CORRECTION**: Removed incorrect claim that `&&` chains with GNU tools require `bash -c` (empirical testing proves they work directly). Added critical warning about subshell hangs. Added decision tree for command format selection. Added "Why bash -c is Needed" root cause explanation section. Updated based on comprehensive reliability analysis (40+ tests across 9 categories). |
 | 2026-04-09 | Added comprehensive "Windsurf on Windows: Command Execution Patterns" section documenting which commands work directly vs. require `bash -c` wrapper. Tested and validated pipelines, redirects, command chaining, quoting, and subshells. Updated all examples to reflect correct usage patterns. |
 | 2026-04-06 | Added Git LFS Smudge Failure troubleshooting block (TLS/CA trust failure recovery via sparse-checkout and `GIT_LFS_SKIP_SMUDGE`). Observed during first use of a K-Dense-AI external-untrusted repo with LFS assets on corporate network. |
  
