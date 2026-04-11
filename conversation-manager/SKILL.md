@@ -190,6 +190,7 @@ summary: "For quick assessment"
 | **Skip exchange IDs** | Can't target specific content | Add IDs when creating files |
 | **Load chronologically** | Old context may be stale | Load by relevance, not time |
 | **No verification** | Missing key context | Check loaded exchanges cover the need |
+| **Missing history** | The conversation history is empty | Check the timestamp of the first exchange in the conversation |
 
 ## Quick Reference
 
