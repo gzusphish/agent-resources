@@ -40,7 +40,7 @@ Systematic decomposition enables better planning and reveals parallelization opp
 - Reflection and refinement concept (referenced but not directly implemented)
 - Estimation and verification at each decomposition level
 
-**From `agent-resources/github-awesome-copilot/skills/breakdown-plan/SKILL.md` (NOT inducted):**
+**From `agent-external/github-awesome-copilot/skills/breakdown-plan/SKILL.md` (NOT inducted):**
 - Hierarchical decomposition structure (Epic→Feature→Story→Task inspired the Level 1/2 hierarchy)
 - Dependency graph visualization pattern
 - Estimation concepts (though simplified from story points to Small/Medium/Large)

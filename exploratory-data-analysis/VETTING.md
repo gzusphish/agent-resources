@@ -102,7 +102,7 @@ This skill provides comprehensive exploratory data analysis capabilities across 
 
 ```bash
 # Copy to vetted skills
-cp -r agent-resources/k-dense-ai-claude-scientific-skills/scientific-skills/exploratory-data-analysis agent-skills-vetted/
+cp -r agent-external/k-dense-ai-claude-scientific-skills/scientific-skills/exploratory-data-analysis agent-skills-vetted/
 
 # Install dependencies as needed
 pip install biopython pillow numpy pandas
@@ -112,7 +112,7 @@ pip install biopython pillow numpy pandas
 
 | Date | Location | Method | Version | Drift Check |
 |------|----------|--------|---------|-------------|
-| 2026-04-07 | agent-skills-vetted/ | copy from agent-resources | 1.0.0 | No original VETTING.md to compare |
+| 2026-04-07 | agent-skills-vetted/ | copy from agent-external | 1.0.0 | No original VETTING.md to compare |
 
 ## Notes
 

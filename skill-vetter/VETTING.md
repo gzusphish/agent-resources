@@ -8,7 +8,7 @@ version: "1.0.0"
 ## Source
 
 - **Repository**: Panopticon (original work)
-- **Repository URL**: https://gitlab.com/agora.panopticon/bespoke-agent-resources.git (agent-skills-custom/skill-vetter/)
+- **Repository URL**: https://gitlab.com/agora.panopticon/bespoke-agent-external.git (agent-skills-custom/skill-vetter/)
 - **Author**: Cascade AI Assistant
 - **Created**: 2026-03-31
 - **License**: MIT license

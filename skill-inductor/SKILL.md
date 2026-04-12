@@ -37,7 +37,7 @@ The workflow boundary: **External sources → Central repositories** (not to IDE
 Find candidate skills and capture initial metadata.
 
 **Sources to check:**
-- `../agent-resources/` — cloned external skill repositories
+- `../agent-external/` — cloned external skill repositories
 - Community sources: GitHub, agent skill registries, documentation
 - Self-identified needs from task friction
 
@@ -52,7 +52,7 @@ skill_candidate:
   initial_assessment: [quick scan of quality/scope]
 ```
 
-**Store in:** `../agent-resources/skill-candidates.md`
+**Store in:** `../agent-external/skill-candidates.md`
 
 ### 2. Vet (Security & Quality Gate)
 
@@ -212,7 +212,7 @@ IDE contexts and projects
 
 **New skill from external source:**
 ```
-1. Clone to ../agent-resources/
+1. Clone to ../agent-external/
 2. Run skill-vetter --strict
 3. Create VETTING.md
 4. Copy to agent-skills/
@@ -252,13 +252,13 @@ If deployment to IDE needed:
 - `skill-auditor/SKILL.md` — Quality validation before ingestion
 - `writing-skills/SKILL.md` — TDD approach to skill creation
 - `skill-repurposer/SKILL.md` — Adapting external skills
-- `../agent-resources/README.md` — External skill staging area
+- `../agent-external/README.md` — External skill staging area
 
 ## Storage Conventions
 
 | Location | Purpose |
 |----------|---------|
-| `../agent-resources/` | Staging area for unvetted external skills |
+| `../agent-external/` | Staging area for unvetted external skills |
 | `agent-skills/` | Unified repository (all skills, differentiated by VETTING.md source_type) |
 | `skill-installer` | Deploys from central repos to IDE contexts |
 

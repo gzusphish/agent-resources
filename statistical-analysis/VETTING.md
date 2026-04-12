@@ -53,14 +53,14 @@ None - conversational guidance skill only.
 ## Installation
 
 ```bash
-cp -r agent-resources/k-dense-ai-claude-scientific-skills/scientific-skills/statistical-analysis agent-skills-vetted/
+cp -r agent-external/k-dense-ai-claude-scientific-skills/scientific-skills/statistical-analysis agent-skills-vetted/
 ```
 
 ## Installation Log
 
 | Date | Location | Method | Version | Drift Check |
 |------|----------|--------|---------|-------------|
-| 2026-04-07 | agent-skills-vetted/ | copy from agent-resources | 1.0.0 | No original VETTING.md |
+| 2026-04-07 | agent-skills-vetted/ | copy from agent-external | 1.0.0 | No original VETTING.md |
 
 ## Notes
 

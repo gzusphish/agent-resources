@@ -180,8 +180,8 @@ cmd //c xcopy //E //I //Y source dest
  
 | Context | Format | Example |
 |---------|--------|---------|
-| Git Bash commands | Unix-style | `../agent-resources/skills/` |
-| cmd / PowerShell | Windows-style | `..\\agent-resources\\skills\\` |
+| Git Bash commands | Unix-style | `../agent-external/skills/` |
+| cmd / PowerShell | Windows-style | `..\\agent-external\\skills\\` |
 | Mixed (cmd in Git Bash) | Doubled | `//c//Windows//System32` |
  
 ## File Operations Quick Reference
