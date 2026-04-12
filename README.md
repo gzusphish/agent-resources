@@ -5,7 +5,7 @@ Central repository for **vetted** agent skills. Skills here have been reviewed a
 ## Workflow
 
 1. **Discover** → Clone/download to `../agent-external/`
-2. **Vet** → Review, test, approve → Copy here
+2. **Vet** → Review, test, approve → Copy to `skills/`
 3. **Install** → Copy/symlink to project-specific `.agent/skills/`
 4. **Update** → Edit here, re-vet, re-deploy to projects
 
@@ -60,12 +60,12 @@ Central repository for **vetted** agent skills. Skills here have been reviewed a
 
 ```bash
 # To GTD project
-cp -r writing-plans/ ../gtd/.agent/skills/
-cp -r codebase-summary/ ../gtd/.agent/skills/
+cp -r skills/writing-plans/ ../gtd/.agent/skills/
+cp -r skills/codebase-summary/ ../gtd/.agent/skills/
 
 # To Panopticon
-cp -r writing-skills/ ../.panopticon/.windsurf/skills/
-cp -r skill-creator/ ../.panopticon/.windsurf/skills/
+cp -r skills/writing-skills/ ../.panopticon/.windsurf/skills/
+cp -r skills/skill-creator/ ../.panopticon/.windsurf/skills/
 ```
 
 ## Vetting Standards
