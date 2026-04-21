@@ -37,7 +37,7 @@ summary: "[1-2 sentence high-level summary]"
 - [Any relevant files, skills, or prior context referenced]
 
 **AI Actions:**
-- [Action 1: e.g., "Explored agent-resources/skills/ directory"]
+- [Action 1: e.g., "Explored final/skills/ directory"]
 - [Action 2: e.g., "Created skill-x/SKILL.md"]
 - [Action 3: e.g., "Updated TO-DO.md"]
 

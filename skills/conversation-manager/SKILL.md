@@ -1,6 +1,8 @@
 ---
 name: conversation-manager
 description: Use when loading conversation history for context recovery, preparing context for new conversations, or managing selective loading of prior exchanges to avoid context overflow. Implements two-stage loading with preliminary filtering followed by targeted exchange recovery.
+trust: Core
+version: 1.0.1
 ---
 
 # Conversation Manager
@@ -14,7 +16,7 @@ Intelligent conversation history loading with two-stage filtering to prevent con
 - **Cross-project context** — find relevant exchanges across multiple conversation files
 - **Context overflow mitigation** — limit loaded exchanges to most relevant subset
 - **Multi-hop reasoning** — follow a chain of decisions through multiple conversations
-- **Summarizing a conversation** — when the user asks you to document the current conversation, store it as a new file in `.panopticon/scriptorium/` following this skill's format with YAML frontmatter, exchange IDs, and structured sections
+- **Summarizing a conversation** — when the user asks you to document the current conversation, store it as a new file in `scriptorium/` following this skill's format with YAML frontmatter, exchange IDs, and structured sections
 
 ## Core Concept: Two-Stage Loading
 
@@ -68,13 +70,13 @@ filtering_steps:
 **Current Request Topic:** [extracted topic]
 
 **Selected Conversations:**
-1. `20260329.0143-panopticon-assembly.md`
+1. `references/20260329.0143-central-workspace-assembly.md`
    - exchange-000 (final state summary)
    - exchange-001 (skill discovery)
    - exchange-005 (security infrastructure)
    - exchange-007 (skill-vetter creation)
 
-2. `20250407.2048-conversation-history-management.md`
+2. `references/20260407.2048-conversation-history-management.md`
    - exchange-001 (concept proposal)
 
 **Total Exchanges to Load:** 5
@@ -108,7 +110,7 @@ User: "Update the skill-vetter to handle Python 3.12"
 
 Stage 1 Analysis:
 - Topic: skill-vetter, Python, security-vetting
-- File match: 20260329.0143-panopticon-assembly.md (keywords: skill-vetter)
+- File match: 20260329.0143-central-workspace-assembly.md (keywords: skill-vetter)
 - Exchange match: exchange-007 (skill-vetter creation)
 
 Stage 2 Loading:
@@ -124,8 +126,8 @@ User: "Why did we choose Ollama over other local model options?"
 Stage 1 Analysis:
 - Topic: local-models, ollama, model-comparison
 - File matches: 
-  - 20260329.0143-panopticon-assembly.md (exchange-010: local models)
-  - 20250407.2048-conversation-history-management.md (none)
+  - references/20260329.0143-central-workspace-assembly.md (exchange-010: local models)
+  - references/20260407.2048-conversation-history-management.md (none)
 - Exchange match: exchange-010
 
 Stage 2 Loading:
@@ -141,7 +143,7 @@ User: "Should we switch from copy to symlink for skill installation?"
 Stage 1 Analysis:
 - Topic: skill-installation, symlink, tech-debt
 - File matches:
-  - 20260329.0143-panopticon-assembly.md (exchange-005: security infrastructure, copy operations)
+  - 20260329.0143-central-workspace-assembly.md (exchange-005: security infrastructure, copy operations)
   - Current TO-DO.md mentions symlink in tech debt
 - Decision: Load exchange-005 for security context, note current open question
 
@@ -227,7 +229,7 @@ After loading, confirm:
 ## Reference Files
 
 - `conversation-manager/references/TEMPLATE.md` — Standardized conversation format
-- `scriptorium/20260329.0143-panopticon-assembly.md` — Example with exchange IDs
+- `references/20260329.0143-central-workspace-assembly.md` — Example with exchange IDs
 
 ---
 

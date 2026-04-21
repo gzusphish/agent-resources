@@ -10,7 +10,7 @@ Summarize this conversation into a structured markdown file optimized for agent 
 
 **CRITICAL:** Use the timestamp of the first exchange in the conversation, NOT the current date when generating the summary.
 
-**Output location:** `.panopticon/scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
+**Output location:** `scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
 - `YYYYMMDD.HHMM` = Timestamp of the FIRST exchange in the conversation
 - NOT the current date when creating this file
 - Example: If first exchange happened March 29, 2026 at 01:43 → filename is `20260329.0143-*.md` even if generating on April 7
@@ -137,9 +137,9 @@ When updating an existing conversation file:
 
 ## Example Output
 
-See: `20260329-panopticon-assembly.md` (good example, though lacks YAML frontmatter)
+See: `references/20260329.0143-central-workspace-assembly.md` (good example, though lacks YAML frontmatter)
 
-See: `20250407-conversation-history-management.md` (complete example with all sections)
+See: `references/20260407.2048-conversation-history-management.md` (complete example with all sections)
 
 ---
 

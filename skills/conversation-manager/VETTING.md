@@ -1,13 +1,13 @@
 ---
 skill: conversation-manager
-version: "1.0.0"
+version: 1.0.1
 ---
 
 # Vetting Record: Conversation Manager
 
 ## Source
 
-- **Repository**: Panopticon (original work)
+- **Repository**: Panopticon Skill Manager (original work)
 - **Author**: Cascade AI Assistant
 - **Created**: 2026-04-07
 - **License**: MIT license
@@ -61,7 +61,7 @@ cp -r skills/conversation-manager/ .github/skills/          # GitHub Copilot
 
 | Date | Location | Method | Version | Drift Check |
 |------|----------|--------|---------|-------------|
-| 2026-04-07 | agent-resources/skills/ | initial | 1.0.0 | Baseline |
+| 2026-04-07 | final/skills/ | initial | 1.0.0 | Baseline |
 
 ## Notes
 
