@@ -16,32 +16,50 @@ summary: "[1-2 sentence high-level summary]"
 
 # Conversation Transcript: [Title]
 
-**Workspace:** [path/to/workspace]  
-**Date:** YYYY-MM-DD  
-**Duration:** [duration]  
-**Topic:** [topic]  
+**Workspace:** [path/to/workspace]
+**Date:** YYYY-MM-DD
+**Duration:** [duration]
+**Topic:** [topic]
+
+---
+
+## Exchange 0: Final State Summary
+
+**Timestamp:** YYYY-MM-DD ~HH:MMam/pm UTC-05:00  
+**Exchange ID:** exchange-000
+**Relevance Tags:** [tag1, tag2]
+**Load Priority:** always
+
+**Context:**
+- [Current state snapshot (what exists now)]
+- [Open tasks / next steps]
+- [Key decisions (brief)]
+- [Important constraints (paths, environment assumptions)]
 
 ---
 
 ## Exchange [N]: [Exchange Title]
 
-**Timestamp:** YYYY-MM-DD ~HH:MMam/pm UTC-05:00  
-**Exchange ID:** [unique-id, e.g., exchange-001]  
-**Relevance Tags:** [tag1, tag2]  
-**Load Priority:** [always|conditional|optional]  
+**Timestamp:** YYYY-MM-DD ~HH:MMam/pm UTC-05:00
+**Exchange ID:** [unique-id, e.g., exchange-001]
+**Relevance Tags:** [tag1, tag2]
+**Load Priority:** [always|conditional|optional]
 
 **User:**
 > "[Direct quote of user request or question]"
 
 **Context:**
+
 - [Any relevant files, skills, or prior context referenced]
 
 **AI Actions:**
+
 - [Action 1: e.g., "Explored final/skills/ directory"]
 - [Action 2: e.g., "Created skill-x/SKILL.md"]
 - [Action 3: e.g., "Updated TO-DO.md"]
 
 **Outcomes:**
+
 - [Outcome 1]
 - [Outcome 2]
 
@@ -54,7 +72,7 @@ summary: "[1-2 sentence high-level summary]"
 ## Key Decisions
 
 | Decision | Rationale |
-|----------|-----------|
+| -------- | --------- |
 | [Decision 1] | [Why this was chosen] |
 | [Decision 2] | [Why this was chosen] |
 
@@ -63,7 +81,7 @@ summary: "[1-2 sentence high-level summary]"
 ## Deliverables Created
 
 | Item | Location | Purpose |
-|------|----------|---------|
+| ---- | -------- | ------- |
 | [Item 1] | [path] | [Brief description] |
 | [Item 2] | [path] | [Brief description] |
 
@@ -72,7 +90,7 @@ summary: "[1-2 sentence high-level summary]"
 ## Statistics
 
 | Metric | Count |
-|--------|-------|
+| ------ | ----- |
 | Total Exchanges | [N] |
 | Files Created | [N] |
 | Files Modified | [N] |
@@ -97,6 +115,7 @@ summary: "[1-2 sentence high-level summary]"
 ---
 
 **Usage Notes for Agents:**
+
 - Load this file when working on: [topic tags]
 - Skip exchanges marked `optional` unless specifically relevant
 - Key exchanges for full context: [exchange-ids]

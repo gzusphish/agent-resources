@@ -1,6 +1,6 @@
 ---
 skill: conversation-manager
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Vetting Record: Conversation Manager

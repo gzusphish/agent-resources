@@ -18,7 +18,7 @@ Check the timestamp of the first exchange in this conversation
 ## 2) Route (pick the approach)
 - Selected skills/tools/workflows: conversation-manager skill
 - Evidence sources to consult: Current conversation transcript
-- Expected outputs: Formatted summary file in .panopticon/scriptorium/
+- Expected outputs: Formatted summary file in scriptorium/
 
 ## 3) Preflight (security + enforceability)
 Required when risk is Medium/High or when touching skills/rules/workflows/tooling.
@@ -31,16 +31,16 @@ Required when risk is Medium/High or when touching skills/rules/workflows/toolin
 ## 4) Execute
 Apply the conversation-manager skill to summarize the current conversation:
 
-1. **Invoke conversation-manager skill** per `@[.panopticon/.windsurf/skills/conversation-manager/SKILL.md]`
+1. **Invoke conversation-manager skill** per `@[.windsurf/skills/conversation-manager/SKILL.md]`
 2. **Process current conversation** using the skill's documented approach
 3. **Generate structured summary** following conversation-manager template format
-4. **Store summary** in `@[.panopticon/scriptorium]` with timestamped filename
+4. **Store summary** in `@[scriptorium]` with timestamped filename
 
 **Implementation steps:**
 - Use conversation-manager skill exactly as documented
 - Apply two-stage loading if conversation is lengthy
 - Follow conversation-manager's YAML frontmatter and exchange ID structure
-- Ensure output location is explicitly .panopticon/scriptorium/
+- Ensure output location is explicitly scriptorium/
 
 ## 5) Evaluate (gated, ordered)
 Evaluate in this order; stop at the first failing gate.
@@ -91,6 +91,6 @@ Create/update a scriptorium entry with:
 - Changes made (summary file created)
 - Follow-ups: None expected
 
-**Output file location**: `.panopticon/scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
+**Output file location**: `scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
 - Use timestamp of FIRST exchange, not current date
 - Example: If first exchange was April 10, 2026 at 2:21pm → `20260410.1421-conversation-summary.md`

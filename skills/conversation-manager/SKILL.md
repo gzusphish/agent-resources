@@ -1,8 +1,8 @@
 ---
 name: conversation-manager
-description: Use when loading conversation history for context recovery, preparing context for new conversations, or managing selective loading of prior exchanges to avoid context overflow. Implements two-stage loading with preliminary filtering followed by targeted exchange recovery.
+description: Use when loading conversation history for context recovery, preparing context for new conversations, or managing selective loading of prior exchanges to avoid context overflow. Also use when the user asks to summarize, document, or archive the current conversation. Implements two-stage loading with preliminary filtering followed by targeted exchange recovery.
 trust: Core
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Conversation Manager
@@ -17,6 +17,16 @@ Intelligent conversation history loading with two-stage filtering to prevent con
 - **Context overflow mitigation** — limit loaded exchanges to most relevant subset
 - **Multi-hop reasoning** — follow a chain of decisions through multiple conversations
 - **Summarizing a conversation** — when the user asks you to document the current conversation, store it as a new file in `scriptorium/` following this skill's format with YAML frontmatter, exchange IDs, and structured sections
+
+## Archiving the Current Conversation
+
+Use this skill in **archiving mode** when the user asks you to summarize/document the current conversation as a reusable context file.
+
+**Steps:**
+- Create a new conversation file in `scriptorium/` using the timestamp of the first exchange for the filename
+- Follow `conversation-manager/references/TEMPLATE.md` for the canonical structure
+- Follow `conversation-manager/references/GENERATION_PROMPT.md` for generation rules (what to include/omit, refresh rules)
+- Include `exchange-000` as the first exchange (final state summary) and mark it `always`
 
 ## Core Concept: Two-Stage Loading
 
@@ -90,9 +100,8 @@ filtering_steps:
 
 **Process:**
 ```bash
-# Load only identified exchanges
-for target in recovery_plan.targets:
-    read_file(target.file, specific_exchanges=target.exchange_ids)
+# Load each targeted file, then extract only the specified exchanges
+# (e.g., by locating the "**Exchange ID:** exchange-NNN" markers for each selected ID)
 ```
 
 **Verification:**
@@ -228,6 +237,7 @@ After loading, confirm:
 
 ## Reference Files
 
+- `conversation-manager/references/GENERATION_PROMPT.md` — Instructions for archiving/summarizing a conversation
 - `conversation-manager/references/TEMPLATE.md` — Standardized conversation format
 - `references/20260329.0143-central-workspace-assembly.md` — Example with exchange IDs
 

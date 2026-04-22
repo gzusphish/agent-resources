@@ -11,6 +11,7 @@ Summarize this conversation into a structured markdown file optimized for agent 
 **CRITICAL:** Use the timestamp of the first exchange in the conversation, NOT the current date when generating the summary.
 
 **Output location:** `scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
+
 - `YYYYMMDD.HHMM` = Timestamp of the FIRST exchange in the conversation
 - NOT the current date when creating this file
 - Example: If first exchange happened March 29, 2026 at 01:43 → filename is `20260329.0143-*.md` even if generating on April 7
@@ -19,87 +20,50 @@ Summarize this conversation into a structured markdown file optimized for agent 
 
 ## Required Structure
 
-### 1. YAML Frontmatter (Metadata)
+Follow `conversation-manager/references/TEMPLATE.md` for the canonical structure.
 
-```yaml
----
-title: "[Descriptive title]"
-date: YYYY-MM-DD
-participants: [user, ai-assistant]
-topics: [list, of, topic, tags]
-keywords: [searchable, keywords]
-duration: "[approximate duration]"
-exchanges: [N]
-load_priority: always|conditional|optional
-summary: "[1-2 sentence overview]"
----
-```
+Additional structural requirements:
+- Include `exchange-000` as the first exchange and mark it `always`
+- Use sequential IDs for the remaining exchanges (`exchange-001`, `exchange-002`, ...)
+- Include the summary sections from the template (Key Decisions, Deliverables Created, Statistics, Key Learnings, Related Conversations)
 
-### 2. Header
+### Special Exchange: exchange-000 (Final State Summary)
 
-```markdown
-# Conversation Transcript: [Title]
+Create `exchange-000` as the first exchange.
 
-**Workspace:** [path]  
-**Date:** YYYY-MM-DD  
-**Duration:** [duration]  
-**Topic:** [topic]  
-```
-
-### 3. Exchange Blocks
-
-For each significant user-AI interaction, create:
-
-```markdown
-## Exchange [N]: [Brief Title]
-
-**Timestamp:** [Time]  
-**Exchange ID:** exchange-[NNN]  
-**Relevance Tags:** [tags for filtering]  
-**Load Priority:** [always|conditional|optional]  
-
-**User:**
-> "[Direct quote - capture exact request]"
-
-**Context:**
-- [Files referenced]
-- [Prior context needed]
-
-**AI Actions:**
-- [Specific actions taken]
-
-**Outcomes:**
-- [Concrete results]
-```
-
-### 4. Summary Sections
-
-- **Key Decisions** — Table of decisions made and why
-- **Deliverables Created** — What was produced and where
-- **Statistics** — Quantified metrics
-- **Key Learnings** — 3-5 distilled insights
-- **Related Conversations** — Links to related transcripts
+Include:
+- Current state snapshot (what exists now)
+- Open tasks / next steps
+- Key decisions (brief)
+- Any important constraints (paths, environment assumptions)
 
 ---
 
 ## Content Guidelines
 
-### Do Include:
+### Do Include
+
 - ✅ Direct user quotes (exact or nearly exact)
 - ✅ Concrete file paths and locations
 - ✅ Specific skill names and tool references
 - ✅ Decisions made and their rationale
 - ✅ Quantified outcomes (counts, metrics)
 - ✅ Tags for filtering (e.g., "skill-management", "security", "refactoring")
+- ✅ Specific skill names and tool references
+- ✅ Decisions made and their rationale
+- ✅ Quantified outcomes (counts, metrics)
+- ✅ Tags for filtering (e.g., "skill-management", "security", "refactoring")
 
-### Do Not Include:
+### Do Not Include
+
 - ❌ Raw API call logs or technical minutia
 - ❌ Full code blocks (reference paths instead)
 - ❌ Transient errors that were resolved
 - ❌ Obvious pleasantries ("Good idea!", "You're welcome")
 - ❌ Information already in standard documentation
 
-### Exchange Priority Guidelines:
+### Exchange Priority Guidelines
+
 - **always** — Critical context for understanding this conversation
 - **conditional** — Relevant if working on specific sub-topic
 - **optional** — Background, exploratory, or superseded content
@@ -128,9 +92,11 @@ When updating an existing conversation file:
 2. **Add new exchanges** — Append with new IDs
 3. **Update metadata** — Refresh statistics, duration
 4. **Mark amendments** — If modifying past exchanges:
+
    ```markdown
    **Note:** Exchange updated on [date] - [reason]
    ```
+
 5. **Update related conversations** — Link to newer follow-ups
 
 ---
