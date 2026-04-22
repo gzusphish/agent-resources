@@ -18,7 +18,7 @@ Check the timestamp of the first exchange in this conversation
 ## 2) Route (pick the approach)
 - Selected skills/tools/workflows: conversation-manager skill
 - Evidence sources to consult: Current conversation transcript
-- Expected outputs: Formatted summary file in scriptorium/
+- Expected outputs: Formatted summary file in resolved scriptorium folder
 
 ## 3) Preflight (security + enforceability)
 Required when risk is Medium/High or when touching skills/rules/workflows/tooling.
@@ -40,7 +40,7 @@ Apply the conversation-manager skill to summarize the current conversation:
 - Use conversation-manager skill exactly as documented
 - Apply two-stage loading if conversation is lengthy
 - Follow conversation-manager's YAML frontmatter and exchange ID structure
-- Ensure output location is explicitly scriptorium/
+- Resolve the scriptorium folder per conversation-manager skill and ensure output location matches
 
 ## 5) Evaluate (gated, ordered)
 Evaluate in this order; stop at the first failing gate.
@@ -91,6 +91,6 @@ Create/update a scriptorium entry with:
 - Changes made (summary file created)
 - Follow-ups: None expected
 
-**Output file location**: `scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
+**Output file location**: Resolved scriptorium folder + `YYYYMMDD.HHMM-[descriptive-name].md`
 - Use timestamp of FIRST exchange, not current date
 - Example: If first exchange was April 10, 2026 at 2:21pm → `20260410.1421-conversation-summary.md`

@@ -10,7 +10,13 @@ Summarize this conversation into a structured markdown file optimized for agent 
 
 **CRITICAL:** Use the timestamp of the first exchange in the conversation, NOT the current date when generating the summary.
 
-**Output location:** `scriptorium/YYYYMMDD.HHMM-[descriptive-name].md`
+**Output location:** Resolved scriptorium folder
+
+Resolve the scriptorium folder in this order:
+- Prefer `.panopticon/scriptorium/` if it exists and is accessible
+- Otherwise use `scriptorium/` in the current workspace (create it if missing)
+
+**Filename:** `YYYYMMDD.HHMM-[descriptive-name].md`
 
 - `YYYYMMDD.HHMM` = Timestamp of the FIRST exchange in the conversation
 - NOT the current date when creating this file
